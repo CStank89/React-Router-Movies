@@ -5,6 +5,7 @@ import Movie from './Movies/Movie'
 
 import SavedList from './Movies/SavedList'
 import { Switch, Link,  Route } from 'react-router-dom'
+import { Router } from 'express'
 
 export default function App () {
   const [saved, setSaved] = useState([]); // Stretch: the ids of "saved" movies
@@ -32,22 +33,22 @@ export default function App () {
   return (
     <div>
       <Switch>
+      <Router>
       <SavedList list={[ /* This is stretch */]} />
       {/* <Route path='/items-list/:id'>
           <Item items={stock} />
         </Route> */}
      
-      <Route path='/movies/:id'>
-      <Link to={`/movies/${id}`}>
-        
-      </Link>
+      <Route 
+      path='/movies/:id'>
+      <Movie 
+      to={`/movies/${id}`} />  
       </Route>
-     
-      <Route path='/'>
-        <Link to='/'> 
-        <MovieList prop={movies}/>
-        </Link>
+      <Route 
+      path='/' 
+      component={MovieList}>
       </Route>
+      </Router>
       </Switch>
       
     </div>
